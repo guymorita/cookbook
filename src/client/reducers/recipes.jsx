@@ -1,4 +1,6 @@
 
+import { RECIPE_ADD } from '../actions/recipe';
+
 const initialState = [
   {
     title: 'Tonkotsu Ramen',
@@ -12,6 +14,14 @@ const initialState = [
 
 export default function recipes(state = initialState, action) {
   switch(action.type) {
+    case RECIPE_ADD:
+      const { recipeName, ingredients } = action;
+      console.log('recipeName, ingredients', recipeName, ingredients);
+      const newRecipe = {
+        title: recipeName,
+        ingredients: ingredients.split(',')
+      };
+      return Object.assign([], state, state.concat(newRecipe));
     default:
       return state;
   }

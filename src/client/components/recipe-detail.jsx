@@ -16,11 +16,11 @@ class RecipeDetail extends Component {
 
   render() {
     const { recipe } = this.props;
-    const { ingredients } = recipe;
+    const { title, ingredients } = recipe;
     return (
       <div>
         <Accordion>
-          <AccordionItem title={"Ingredients"}>
+          <AccordionItem title={title}>
             {ingredients.map((ingredient, ind) => {
               return (
                 <div key={ind}>

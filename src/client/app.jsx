@@ -6,8 +6,9 @@ import React from "react";
 import {render} from "react-dom";
 import {routes} from "./routes";
 import {Router, browserHistory} from "react-router";
-import {createStore} from "redux";
+import {compose, createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
+import thunk from 'redux-thunk';
 /*  */
 import "./styles/base.css";
 import rootReducer from "./reducers";
@@ -18,7 +19,7 @@ import rootReducer from "./reducers";
 /**/
 window.webappStart = () => {
   const initialState = window.__PRELOADED_STATE__;
-  const store = createStore(rootReducer, initialState);
+  const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk)));
   render(
     <Provider store={store}>
       <Router history={browserHistory}>{routes}</Router>
