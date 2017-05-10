@@ -1,7 +1,7 @@
 
 import { List } from 'immutable';
 
-import { RECIPE_ADD, RECIPE_EDIT } from '../actions/recipe';
+import { RECIPE_ADD, RECIPE_DELETE, RECIPE_EDIT } from '../actions/recipe';
 
 const initialState = [
   {
@@ -23,6 +23,9 @@ export default function recipes(state = initialState, action) {
         ingredients: ingredients.split(',')
       };
       return state.concat(newRecipe);
+    case RECIPE_DELETE:
+      const stateCp = List(state);
+      return stateCp.delete(action.id);
     case RECIPE_EDIT:
       const stateCopy = List(state);
       const { id } = action;

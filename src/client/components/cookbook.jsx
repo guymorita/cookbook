@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import RecipeList from "./recipe-list";
 import AddRecipeModal from './recipe/add-recipe-modal';
 
-import { recipeAdd, recipeEdit } from '../actions/recipe';
+import { recipeAdd, recipeDelete, recipeEdit } from '../actions/recipe';
 import { bindActionCreators } from 'redux';
 
 class Cookbook extends Component {
@@ -12,12 +12,16 @@ class Cookbook extends Component {
     super(props);
   }
 
-  add(values) {
+  addRecipe(values) {
     const { title, ingredients } = values;
     this.props.onAdd(title, ingredients);
   }
 
-  edit(values) {
+  deleteRecipe(id) {
+    this.props.onDelete(id);
+  }
+
+  editRecipe(values) {
     const { id, title, ingredients } = values;
     this.props.onEdit(id, title, ingredients);
   }
@@ -26,8 +30,8 @@ class Cookbook extends Component {
     const { recipes } = this.props;
     return (
       <div>
-        <RecipeList recipeData={recipes} onSubmit={this.edit.bind(this)}/>
-        <AddRecipeModal onSubmit={this.add.bind(this)} />
+        <RecipeList recipeData={recipes} deleteRecipe={this.deleteRecipe.bind(this)} onSubmit={this.editRecipe.bind(this)}/>
+        <AddRecipeModal onSubmit={this.addRecipe.bind(this)} />
       </div>
     )
   }
@@ -43,6 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAdd: (title, ingredients) => dispatch(recipeAdd(title, ingredients)),
+    onDelete: (id) => dispatch(recipeDelete(id)),
     onEdit: (id, title, ingredients) => dispatch(recipeEdit(id, title, ingredients))
   }
 }

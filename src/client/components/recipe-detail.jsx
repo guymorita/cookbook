@@ -7,16 +7,8 @@ class RecipeDetail extends Component {
     super(props);
   }
 
-  deleteRecipe() {
-    this.props._deleteRecipe(this.props.id);
-  }
-
-  editRecipe() {
-    this.props._editRecipe(this.props.id);
-  }
-
   render() {
-    const { id, onSubmit, recipe } = this.props;
+    const { id, deleteRecipe, onSubmit, recipe } = this.props;
     const { ingredients, title } = recipe;
     return (
       <div>
@@ -32,7 +24,7 @@ class RecipeDetail extends Component {
           </AccordionItem>
         </Accordion>
         <div>
-          <button type="submit" onClick={this.deleteRecipe.bind(this)}>DELETE</button>
+          <button type="submit" onClick={deleteRecipe.bind(this, id)}>DELETE</button>
           <EditRecipeModal id={id} recipe={recipe} onSubmit={onSubmit}/>
         </div>
       </div>
