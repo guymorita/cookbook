@@ -9,6 +9,8 @@ import {Router, browserHistory} from "react-router";
 import {compose, createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import thunk from 'redux-thunk';
+import {persistStore, autoRehydrate} from 'redux-persist';
+
 /*  */
 import "./styles/base.css";
 import rootReducer from "./reducers";
@@ -19,7 +21,15 @@ import rootReducer from "./reducers";
 /**/
 window.webappStart = () => {
   const initialState = window.__PRELOADED_STATE__;
-  const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk)));
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(thunk),
+      autoRehydrate()
+    )
+  );
+  persistStore(store);
   render(
     <Provider store={store}>
       <Router history={browserHistory}>{routes}</Router>
