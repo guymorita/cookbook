@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Accordion, AccordionItem } from 'react-sanfona';
+import EditRecipeModal from './recipe/edit-recipe-modal';
 
 class RecipeDetail extends Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class RecipeDetail extends Component {
   }
 
   render() {
-    const { recipe } = this.props;
-    const { title, ingredients } = recipe;
+    const { id, onSubmit, recipe } = this.props;
+    const { ingredients, title } = recipe;
     return (
       <div>
         <Accordion>
@@ -32,7 +33,7 @@ class RecipeDetail extends Component {
         </Accordion>
         <div>
           <button type="submit" onClick={this.deleteRecipe.bind(this)}>DELETE</button>
-          <button type="submit" onClick={this.editRecipe.bind(this)}>EDIT</button>
+          <EditRecipeModal id={id} recipe={recipe} onSubmit={onSubmit}/>
         </div>
       </div>
     )

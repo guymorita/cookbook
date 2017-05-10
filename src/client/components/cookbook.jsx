@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 
 import RecipeList from "./recipe-list";
-import AddRecipeModal from './add-recipe/add-recipe-modal';
-import EditRecipeForm from './edit-recipe-form';
+import AddRecipeModal from './recipe/add-recipe-modal';
 
-import { recipeAdd } from '../actions/recipe';
+import { recipeAdd, recipeEdit } from '../actions/recipe';
 import { bindActionCreators } from 'redux';
 
 class Cookbook extends Component {
@@ -13,17 +12,22 @@ class Cookbook extends Component {
     super(props);
   }
 
-  submit(values) {
-    const { recipeName, ingredients } = values;
-    this.props.onAdd(recipeName, ingredients);
+  add(values) {
+    const { title, ingredients } = values;
+    this.props.onAdd(title, ingredients);
+  }
+
+  edit(values) {
+    const { id, title, ingredients } = values;
+    this.props.onEdit(id, title, ingredients);
   }
 
   render(){
     const { recipes } = this.props;
     return (
       <div>
-        <RecipeList recipeData={recipes}/>
-        <AddRecipeModal onSubmit={this.submit.bind(this)} />
+        <RecipeList recipeData={recipes} onSubmit={this.edit.bind(this)}/>
+        <AddRecipeModal onSubmit={this.add.bind(this)} />
       </div>
     )
   }
@@ -38,7 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAdd: (recipeName, ingredients) => dispatch(recipeAdd(recipeName, ingredients))
+    onAdd: (title, ingredients) => dispatch(recipeAdd(title, ingredients)),
+    onEdit: (id, title, ingredients) => dispatch(recipeEdit(id, title, ingredients))
   }
 }
 

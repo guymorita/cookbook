@@ -2,14 +2,14 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-class AddRecipeForm extends React.Component {
+class AddEditRecipeForm extends React.Component {
   render() {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="recipeName">Recipe Name</label>
-          <Field name="recipeName" component="input" type="text"/>
+          <label htmlFor="title">Recipe Name</label>
+          <Field name="title" component="input" type="text"/>
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients (comma delimited)</label>
@@ -21,8 +21,8 @@ class AddRecipeForm extends React.Component {
   }
 }
 
-AddRecipeForm = reduxForm({
-  form: 'add_recipe'
-})(AddRecipeForm);
+AddEditRecipeForm = reduxForm({
+  form: 'add_edit_recipe'
+})(AddEditRecipeForm);
 
-export default AddRecipeForm;
+export default AddEditRecipeForm;

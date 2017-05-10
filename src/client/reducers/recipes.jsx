@@ -1,5 +1,7 @@
 
-import { RECIPE_ADD } from '../actions/recipe';
+import { List } from 'immutable';
+
+import { RECIPE_ADD, RECIPE_EDIT } from '../actions/recipe';
 
 const initialState = [
   {
@@ -15,13 +17,20 @@ const initialState = [
 export default function recipes(state = initialState, action) {
   switch(action.type) {
     case RECIPE_ADD:
-      const { recipeName, ingredients } = action;
-      console.log('recipeName, ingredients', recipeName, ingredients);
+      const { title, ingredients } = action;
       const newRecipe = {
-        title: recipeName,
+        title: title,
         ingredients: ingredients.split(',')
       };
-      return Object.assign([], state, state.concat(newRecipe));
+      return state.concat(newRecipe);
+    case RECIPE_EDIT:
+      const stateCopy = List(state);
+      const { id } = action;
+      const editedRecipe = {
+        title: action.title,
+        ingredients: action.ingredients
+      };
+      return stateCopy.update(id, () => {return editedRecipe});
     default:
       return state;
   }

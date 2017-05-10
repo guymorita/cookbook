@@ -15,11 +15,11 @@ class RecipeList extends Component{
   }
 
   render(){
-    const { recipeData } = this.props;
+    const { onSubmit, recipeData } = this.props;
     return (
       <div>
         <h3>Recipe List</h3>
-        {recipeData.map((recipe, ind) => {return <RecipeDetail key={ind} recipe={recipe}/>})}
+        {recipeData.map((recipe, id) => {return <RecipeDetail key={id} id={id} onSubmit={onSubmit} recipe={recipe}/>})}
       </div>
     );
   }

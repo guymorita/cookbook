@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
-import AddRecipeForm from './add-recipe-form';
+import AddEditRecipeForm from './add-edit-recipe-form';
 
 class AddRecipeModal extends Component {
   constructor(props) {
@@ -19,18 +19,19 @@ class AddRecipeModal extends Component {
   }
 
   render() {
+    const { onSubmit } = this.props;
     return (
       <div>
         <button onClick={this.openModal.bind(this)}>Add Recipe</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal.bind(this)}
-          contentLabel="Example Modal"
+          contentLabel="Add Recipe Modal"
         >
 
           <h2 ref="subtitle">Add Recipe</h2>
           <button onClick={this.closeModal.bind(this)}>close</button>
-          <AddRecipeForm onSubmit={this.props.onSubmit}/>
+          <AddEditRecipeForm onSubmit={onSubmit}/>
         </Modal>
       </div>
     );
