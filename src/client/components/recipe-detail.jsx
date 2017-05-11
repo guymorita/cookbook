@@ -1,5 +1,7 @@
+
 import React, {Component} from "react";
 import { Accordion, AccordionItem } from 'react-sanfona';
+
 import EditRecipeModal from './recipe/edit-recipe-modal';
 
 class RecipeDetail extends Component {

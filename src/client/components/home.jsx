@@ -1,7 +1,8 @@
+
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-/**/
+
 import {toggleCheck, incNumber, decNumber} from "../actions";
 
 class Home extends React.Component {

@@ -1,11 +1,10 @@
+
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 
 import RecipeList from "./recipe-list";
 import AddRecipeModal from './recipe/add-recipe-modal';
-
 import { recipeAdd, recipeDelete, recipeEdit } from '../actions/recipe';
-import { bindActionCreators } from 'redux';
 
 class Cookbook extends Component {
   constructor(props) {
