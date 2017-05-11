@@ -1,19 +1,24 @@
 # cookbook [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> 
+>
 
 ## Installation
 
 ```sh
-$ npm install --save cookbook
+$ npm install
 ```
 
 ## Usage
 
-```js
-var cookbook = require('cookbook');
-
-cookbook('Rainbow');
+```bash
+gulp dev
 ```
+
+Visit http://localhost:3000/cookbook
+
+## Screenshots
+
+![dry-run](dry-run-2.gif)
+
 ## License
 
 Apache-2.0 © [Guy Morita]()
