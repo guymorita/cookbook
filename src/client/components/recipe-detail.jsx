@@ -14,7 +14,7 @@ class RecipeDetail extends Component {
     const { ingredients, title } = recipe;
     return (
       <div>
-        <Accordion>
+        <Accordion activeItems={-1}>
           <AccordionItem title={title}>
             {ingredients.map((ingredient, ind) => {
               return (
@@ -23,12 +23,10 @@ class RecipeDetail extends Component {
                 </div>
               );
             })}
+            <button type="submit" onClick={deleteRecipe.bind(this, id)}>DELETE</button>
+            <EditRecipeModal id={id} recipe={recipe} onSubmit={onSubmit}/>
           </AccordionItem>
         </Accordion>
-        <div>
-          <button type="submit" onClick={deleteRecipe.bind(this, id)}>DELETE</button>
-          <EditRecipeModal id={id} recipe={recipe} onSubmit={onSubmit}/>
-        </div>
       </div>
     )
   }
