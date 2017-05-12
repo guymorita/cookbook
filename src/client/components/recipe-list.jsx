@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { connect } from 'react-redux';
 import RecipeDetail from "./recipe-detail";
 
 class RecipeList extends Component{
@@ -15,14 +16,21 @@ class RecipeList extends Component{
   }
 
   render(){
-    const { recipeData } = this.props;
+    const { recipes } = this.props;
     return (
       <div>
         <h3>Recipe List</h3>
-        {recipeData.map((recipe, ind) => {return <RecipeDetail key={ind} recipe={recipe}/>})}
+        {recipes.map((recipe, ind) => {return <RecipeDetail key={ind} recipe={recipe}/>})}
       </div>
     );
   }
 };
 
-export default RecipeList;
+const mapStateToProps = (state) => {
+  const { recipes } = state
+  return {
+    recipes
+  }
+};
+
+export default connect(mapStateToProps)(RecipeList);
