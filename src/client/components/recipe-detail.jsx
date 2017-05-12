@@ -1,5 +1,4 @@
-import React, {Component} from "react";
-import { Accordion, AccordionItem } from 'react-sanfona';
+import React, { Component } from "react";
 
 class RecipeDetail extends Component {
   constructor(props) {
@@ -19,21 +18,15 @@ class RecipeDetail extends Component {
     const { ingredients } = recipe;
     return (
       <div>
-        <Accordion>
-          <AccordionItem title={"Ingredients"}>
-            {ingredients.map((ingredient, ind) => {
-              return (
-                <div key={ind}>
-                  {ingredient}
-                </div>
-              );
-            })}
-          </AccordionItem>
-        </Accordion>
-        <div>
-          <button type="submit" onClick={this.deleteRecipe.bind(this)}>DELETE</button>
-          <button type="submit" onClick={this.editRecipe.bind(this)}>EDIT</button>
-        </div>
+        {ingredients.map((ingredient, ind) => {
+            return (
+              <div key={ind}>
+                {ingredient}
+              </div>
+            );
+        })}
+        <button type="submit" onClick={this.deleteRecipe.bind(this)}>DELETE</button>
+        <button type="submit" onClick={this.editRecipe.bind(this)}>EDIT</button>
       </div>
     )
   }

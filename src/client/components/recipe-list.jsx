@@ -1,5 +1,8 @@
-import React, {Component} from "react";
+
+import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { Accordion, AccordionItem } from 'react-sanfona';
+
 import RecipeDetail from "./recipe-detail";
 
 class RecipeList extends Component{
@@ -20,7 +23,15 @@ class RecipeList extends Component{
     return (
       <div>
         <h3>Recipe List</h3>
-        {recipes.map((recipe, ind) => {return <RecipeDetail key={ind} recipe={recipe}/>})}
+        <Accordion>
+          {recipes.map((recipe, ind) => {
+            return (
+              <AccordionItem title={recipe.title} slug={ind} key={ind}>
+                <RecipeDetail key={ind} recipe={recipe}/>
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
       </div>
     );
   }
